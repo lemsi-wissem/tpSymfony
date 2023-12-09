@@ -1,0 +1,22 @@
+<h1>Recherche Voiture</h1>
+<form action="" method="post">
+    Série: <input type="text" name="input_serie">
+    <input type="submit" value="Rechercher">
+</form>
+
+{% if voitures is empty %}
+Acune voiture trouvée
+{% else %}
+    <table border="1">
+        <tr>
+            <th>Serie</th>
+            <th>Modele</th>
+        </tr>
+        {% for voiture in voitures %}
+            <tr>
+                <td>{{ voiture.serie }}</td>
+                <td>{{ voiture.models.label }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}

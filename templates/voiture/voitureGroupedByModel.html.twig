@@ -1,0 +1,17 @@
+<h1>Voiture groupé par Modéle</h1>
+    <table border="1">
+        <tr>
+            <th>Modéle</th>
+            <th>voitures</th>
+        </tr>
+        {% for voiture in voitures %}
+        <tr>
+            <td>{{voiture.label}}</td>
+            <td>
+                {% for v in voiture.voitures %}
+                    {{v.serie}}<br>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
