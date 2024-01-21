@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Ronaldo@23
+      MYSQL_DATABASE: location
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+
+  php:
+    build: .
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "83:80"
+    depends_on:
+      - php
+
+volumes:
+  db_data: {}
